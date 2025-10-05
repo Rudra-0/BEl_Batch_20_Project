@@ -1,0 +1,113 @@
+====================================================================
+PDF INTELLIGENCE REPORT SUMMARIZER - BUILD INSTRUCTIONS
+====================================================================
+
+OVERVIEW:
+This application creates a standalone EXE file that can summarize
+PDF military intelligence reports (100-1000 pages) using either
+offline or online AI models.
+
+FEATURES:
+- Offline AI mode (no internet required)
+- Online AI mode (OpenAI - better quality)
+- Three detail levels: High, Medium, Low
+- Export to PDF or TXT format
+- Handles 100-2000 page documents
+- Maximum file size: 500MB
+
+====================================================================
+HOW TO BUILD THE EXE FILE:
+====================================================================
+
+OPTION 1 - Quick Build (Recommended):
+--------------------------------------
+Simply run:
+    python build_exe.py
+
+The EXE will be created in the 'dist' folder.
+
+
+OPTION 2 - Manual Build:
+-------------------------
+Run the following command:
+
+    pyinstaller main.py --name=PDF_Summarizer --onefile --windowed --hidden-import=nltk --hidden-import=sumy --hidden-import=pypdf --hidden-import=openai --hidden-import=reportlab --collect-data=nltk --collect-data=sumy --collect-data=reportlab --noconfirm --clean
+
+
+====================================================================
+USING THE APPLICATION:
+====================================================================
+
+1. OFFLINE MODE (No internet required):
+   - Select your PDF file
+   - Choose "Offline AI" 
+   - Select detail level (High/Medium/Low)
+   - Click "Process & Summarize"
+   - Export the summary when done
+
+2. ONLINE MODE (Better quality, requires internet):
+   - You need an OpenAI API key (get from: https://platform.openai.com)
+   - Select your PDF file
+   - Choose "Online AI"
+   - Enter your API key
+   - Select detail level (High/Medium/Low)
+   - Click "Process & Summarize"
+   - Export the summary when done
+
+====================================================================
+DETAIL LEVELS EXPLAINED:
+====================================================================
+
+- HIGH: 30-40% of original text (comprehensive summary)
+- MEDIUM: 15-20% of original text (moderate summary)
+- LOW: 5-10% of original text (brief executive summary)
+
+====================================================================
+TECHNICAL DETAILS:
+====================================================================
+
+Technologies used:
+- Python 3.11
+- pypdf: PDF text extraction
+- NLTK + Sumy: Offline AI summarization
+- OpenAI API: Online AI summarization
+- Tkinter: Desktop GUI
+- PyInstaller: EXE packaging
+
+File size:
+- The EXE will be approximately 50-100MB
+- This includes all dependencies for offline operation
+
+Performance:
+- Offline mode: 2-5 minutes for 500 pages
+- Online mode: 1-3 minutes for 500 pages
+
+====================================================================
+TROUBLESHOOTING:
+====================================================================
+
+Issue: EXE doesn't start
+Solution: Make sure you have the required DLL files on Windows
+
+Issue: Offline mode is slow
+Solution: This is normal - local AI processing takes time
+
+Issue: Online mode gives API error  
+Solution: Check your OpenAI API key and internet connection
+
+Issue: PDF not loading
+Solution: Ensure PDF is not password-protected or corrupted
+
+====================================================================
+DISTRIBUTION:
+====================================================================
+
+The generated EXE file (dist/PDF_Summarizer.exe) can be:
+- Copied to any Windows machine
+- Run without installing Python
+- Used completely offline (in offline mode)
+- Shared with other users
+
+No additional installation required!
+
+====================================================================
