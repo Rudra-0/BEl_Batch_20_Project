@@ -1,7 +1,10 @@
+from typing import Mapping, Optional
+
+from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.enums import TA_LEFT, TA_CENTER
 from datetime import datetime
 import os
@@ -11,15 +14,22 @@ class SummaryExporter:
     def export_to_txt(content: str, filepath: str) -> None:
         """Export summary to text file"""
         try:
+            directory = os.path.dirname(os.path.abspath(filepath))
+            if directory and not os.path.exists(directory):
+                os.makedirs(directory, exist_ok=True)
             with open(filepath, 'w', encoding='utf-8') as f:
                 f.write(content)
         except Exception as e:
             raise Exception(f"Failed to export TXT: {str(e)}")
     
     @staticmethod
-    def export_to_pdf(content: str, filepath: str, metadata: dict = None) -> None:
+    def export_to_pdf(content: str, filepath: str, metadata: Optional[Mapping[str, str]] = None) -> None:
         """Export summary to PDF file with proper formatting"""
         try:
+            directory = os.path.dirname(os.path.abspath(filepath))
+            if directory and not os.path.exists(directory):
+                os.makedirs(directory, exist_ok=True)
+
             doc = SimpleDocTemplate(
                 filepath,
                 pagesize=letter,
@@ -35,7 +45,7 @@ class SummaryExporter:
                 'CustomTitle',
                 parent=styles['Heading1'],
                 fontSize=18,
-                textColor='#000000',
+                textColor=colors.black,
                 spaceAfter=12,
                 alignment=TA_CENTER,
                 fontName='Helvetica-Bold'
@@ -45,7 +55,7 @@ class SummaryExporter:
                 'CustomHeading',
                 parent=styles['Heading2'],
                 fontSize=12,
-                textColor='#000000',
+                textColor=colors.black,
                 spaceAfter=6,
                 spaceBefore=12,
                 fontName='Helvetica-Bold'
