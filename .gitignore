@@ -1,0 +1,35 @@
+@'
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Virtual envs
+.venv/
+venv/
+.env
+.envrc
+
+# Build artifacts
+build/
+dist/
+*.spec
+*.exe
+*.dll
+
+# Tools/IDE
+.uv/
+.pytest_cache/
+.coverage*
+htmlcov/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.cursor/
+
+# OS
+.DS_Store
+Thumbs.db
+'@ | Out-File -FilePath .gitignore -Encoding utf8 -NoNewline

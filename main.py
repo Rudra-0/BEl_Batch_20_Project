@@ -4,6 +4,7 @@ import os
 import threading
 from pdf_processor import PDFProcessor
 from summarizer import Summarizer
+from embed_summarizer import EmbeddingCentroidSummarizer
 from exporter import SummaryExporter
 from datetime import datetime
 
@@ -51,6 +52,18 @@ class PDFSummarizerApp:
                        variable=self.mode_var, value="online",
                        command=self.toggle_api_key).grid(row=1, column=0, sticky=tk.W, padx=5)
         
+        # Offline model selection (minimal UI addition)
+        ttk.Label(mode_frame, text="Offline Model:").grid(row=0, column=1, sticky=tk.W, padx=10)
+        self.offline_model_var = tk.StringVar(value="lsa")
+        self.offline_model_combo = ttk.Combobox(
+            mode_frame,
+            textvariable=self.offline_model_var,
+            values=["lsa", "embed"],
+            state='readonly',
+            width=12,
+        )
+        self.offline_model_combo.grid(row=1, column=1, sticky=tk.W, padx=10)
+
         ttk.Label(mode_frame, text="OpenAI API Key:").grid(row=2, column=0, sticky=tk.W, padx=5, pady=(5,0))
         self.api_key_entry = ttk.Entry(mode_frame, width=50, show="*")
         self.api_key_entry.grid(row=3, column=0, sticky=(tk.W, tk.E), padx=5, pady=(0,5))
@@ -100,8 +113,12 @@ class PDFSummarizerApp:
     def toggle_api_key(self):
         if self.mode_var.get() == "online":
             self.api_key_entry.config(state='normal')
+            # disable offline model selection when online is chosen
+            self.offline_model_combo.config(state='disabled')
         else:
             self.api_key_entry.config(state='disabled')
+            # enable offline model selection for offline mode
+            self.offline_model_combo.config(state='readonly')
     
     def browse_pdf(self):
         filename = filedialog.askopenfilename(
@@ -146,16 +163,27 @@ class PDFSummarizerApp:
             self.update_progress(30, f"Extracted {self.stats['pages']} pages, {self.stats['words']} words")
             
             api_key = self.api_key_entry.get().strip() if self.mode_var.get() == "online" else None
-            summarizer = Summarizer(mode=self.mode_var.get(), api_key=api_key)
-            
-            self.summary = summarizer.summarize(
-                self.extracted_text,
-                self.detail_var.get(),
-                progress_callback=lambda p, m: self.update_progress(30 + p * 0.7, m)
-            )
+
+            # Route based on offline model selection without changing existing LSA path
+            if self.mode_var.get() == "offline" and self.offline_model_var.get() == "embed":
+                embedder = EmbeddingCentroidSummarizer()
+                self.summary = embedder.summarize(
+                    self.extracted_text,
+                    self.detail_var.get(),
+                    progress_callback=lambda p, m: self.update_progress(30 + p * 0.7, m)
+                )
+            else:
+                summarizer = Summarizer(mode=self.mode_var.get(), api_key=api_key)
+                self.summary = summarizer.summarize(
+                    self.extracted_text,
+                    self.detail_var.get(),
+                    progress_callback=lambda p, m: self.update_progress(30 + p * 0.7, m)
+                )
             
             self.output_text.insert(1.0, f"=== SUMMARY ===\n")
             self.output_text.insert(tk.END, f"Mode: {self.mode_var.get().upper()}\n")
+            if self.mode_var.get() == 'offline':
+                self.output_text.insert(tk.END, f"Offline Model: {self.offline_model_var.get().upper()}\n")
             self.output_text.insert(tk.END, f"Detail Level: {self.detail_var.get().upper()}\n")
             self.output_text.insert(tk.END, f"Original: {self.stats['words']} words, {self.stats['pages']} pages\n")
             self.output_text.insert(tk.END, f"Summary: {len(self.summary.split())} words\n")
