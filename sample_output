@@ -1,0 +1,161 @@
+TPS 
+Importance
+Function
+A set of fuel injectors 
+(one for each cylinder) 
+delivers the correct 
+amount of fuel to a 
+corresponding cylinder 
+during the intake stroke 
+under control of the 
+ECU
+• A fuel injector  is one of 
+the important actuators 
+used in automotive 
+electronic application. • Reduce NOx emissions
+EGR Actuator
+Importance
+Function
+
+Measure mass of air 
+flow into the intake 
+manifold
+Determine appropriate fuel 
+to be injected so that AFR is 
+at stoichiometry and hence 
+regulate emissions and 
+control torque
+MAF Sensor
+Importance
+Function
+• Measure residual 
+oxygen in the exhaust 
+indirectly
+• Outputs AFR (rich / 
+lean) 
+• Indirect measurement of 
+harmful gases in the 
+exhaust 
+• Based on this alter AFR / 
+MBT / EGR
+EGO Sensor
+Importance
+Function
+Measure the crankshaft 
+angular speed ( RPM) / 
+crankshaft angular 
+rotation (degree) and 
+position of camshaft
+• Determine MBT 
+• Determine speed 
+• Determine when to 
+open/close inlet and 
+outlet valve (camshaft)
+CRANKSHAFT/ 
+CAMSHAFT 
+POSITION SENSOR
+Importance
+Function
+Temperature of the engine  
+coolant and changes in 
+engine temperature 
+(whether the engine is cold 
+or warming up)
+• Temperature of the 
+coolant, the temperature 
+of the inlet air, and the 
+temperature of the 
+exhaust gas oxygen 
+sensor are important for 
+electronic fuel control 
+system 
+• Cold-start conditions 
+COOLANT 
+TEMPERATURE 
+SENSOR
+Importance
+Function
+
+In addition to measurements of 
+the above variables, engine control 
+is also based on the status of the 
+vehicle as monitored by a set of 
+switches. The superset of variables sensed in engine control includes the 
+following: 
+1.Mass air flow (MAF) rate 
+2.Exhaust gas oxygen concentration 
+3.Throttle plate angular position 
+4.Crankshaft angular position/RPM
+5.Coolant temperature 
+6.Intake air temperature
+7.Manifold absolute pressure (MAP) 
+8.Differential exhaust gas pressure 
+9.Vehicle speed 
+10.Transmission gear selector positions
+Variables to Be Measured 
+
+Various sensors in Car
+Various actuators in Car
+• Fuel Metering Actuator
+• Fuel Injector Actuator ( Solenoid based)
+• Ignition Actuator
+
+Various sensors in Engine of a Car
+
+
+A throttle position sensor (TPS) is a sensor used to monitor the throttle body 
+valve position for the ECU of an engine. C) Crank Angle Position SENSOR
+
+
+Engine Crankshaft (Angular) Position Sensor (CKP / Crank sensor)
+        
+19-09-2025 35
+• Provides information about the position, rotational speed of the
+crankshaft to the ECM. https://www.lunchboxsessions.com/materials/position-sensors/optical-shaft-encoders-lesson 
+
+19-09-2025 38
+Optical CKP – Working 
+• Optical crank sensor consists of an LED , photodiode or a phototransistor , an amplifier 
+and a sensed disk with holes. E) KNOCK (DETONATION) SENSOR 
+A knock sensor is usually located on the left side of the 
+engine block, just below the intake manifold, and is used 
+to prevent undesirable knock and hence prevent engine 
+damage
+
+Detonation v/s Knocking v/s pre-ignition 
+https://www.youtube.com/watch?v=FjEAfgi83po 
+
+
+2. AUTOMOTIVE  ENGINE  CONTROL  ACTUATORS
+• An actuator is a device that receives an electrical input (e.g., from the engine 
+controller) and produces a mechanical or thermal (or other) output. https://youtu.be/n594CkrP6xE?si=b9I3IE_mZqsu6lZT 
+
+https://www.explainthatstuff.com/howrelayswork.html 
+
+
+Relay v/s Solenoid
+• A relay is a electromechanical switch that uses the electromagnetism to attract a contact and complete circuit 
+Used to switch low to high currents between circuits  (Transfer current)
+• A solenoid is also electromechanical device which converts electric energy to mechanical motion. •This relays the electrical current from the ignition to the starter motor, which starts the engine. Fuel Metering Sensor and Actuator
+ Fuel metering systems and fuel injector valves are both 
+components of a fuel injection system, but they have 
+different functions:
+•Fuel metering systems
+✓ Regulate the fuel supply to an engine to ensure it 
+receives the correct amount of fuel for its operating 
+conditions. ✓ Fuel injectors are small nozzles that are electronically 
+controlled and have valves that open and close 
+multiple times per second
+https://www.tiepie-automotive.com/en/articles/fuel-pressure-sensor-and-metering-valve 
+
+• The fuel metering valve is a fuel control unit that controls the amount of fuel fed in the injection pump later to the cylinders. • The Fuel metering valve is controlled by an ECU controlling the fuel-fed based on the engine’s requirements and the current fuel pressure. • For a metering valve to work, it needs the fuel pressure sensor to send accurate pressure reading to the PCM (Power-train Control Module) or 
+the ECM (Engine control module). ➢ Valve close => No fuel delivery 
+➢ Valve open => Fuel is delivering
+➢ How much of fuel is delivered at what rate and pressure, for how long this valve is to be open is decided by ECU 
+based on the mass air flow  to maintain AFR and there by control emissions and improve fuel economy. ❖ What rate : Solenoid valve Fuel metering Actuator based on Fuel flow pressure
+❖ Pressure : Fuel rail pressure sensor ( Fuel Metering sensor)
+❖ How long this valve is to be open : Solenoid valve based on MAF, TPS, EGO sensors to regulate AFR 
+❖ Fuel injector is  a nozzle controlled by solenoid
+Without a metering valve, the amount of fuel won’t be controlled resulting in unbalanced power 
+production. • Based on measurements from the sensors for engine position, mass air flow or manifold pressure, and RPM, 
+the electronic controller computes the correct spark advance for each cylinder.

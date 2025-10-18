@@ -14,6 +14,7 @@ dependencies = {
     'nltk': 'Natural language processing',
     'sumy': 'Offline summarization',
     'reportlab': 'PDF export',
+    'sklearn': 'Embedding centroid summarizer (TF-IDF)',
     'tkinter': 'GUI interface'
 }
 
